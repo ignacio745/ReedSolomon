@@ -42,6 +42,21 @@ def recuperar_bytes(palabra:list[list[int]], n:int, k:int, campo:list[list[int]]
     return arreglado
 
 
+
+
+
+def desarmar_entrelazado(bits:str, n:int, tamaño_byte:int, cant_entrelazados:int) -> str:
+    cant_bits_entrelazados = tamaño_byte * n * cant_entrelazados
+    bits_desentrelazados = ""
+    bits_por_palabra = tamaño_byte * n
+    for i in range(0, len(bits), cant_bits_entrelazados):
+        bits_actuales = bits[i:i+cant_bits_entrelazados]
+        for j in range(cant_entrelazados):
+            for k in range(bits_por_palabra):
+                bits_desentrelazados += bits_actuales[k * cant_entrelazados + j]
+    return bits_desentrelazados
+
+
     
 
 
@@ -86,7 +101,10 @@ if __name__ == "__main__":
     archivo.close()
 
     bits = "".join([f"{byte:08b}" for byte in bytes_iniciales])
-    bytes_tamaño_correcto:list[list[int]] = [[int(bit) for bit in bits[i:i+tamaño_byte]] for i in range(0, len(bits), tamaño_byte)]
+
+    bits_desentrelazados = desarmar_entrelazado(bits, n, tamaño_byte, 10)
+    
+    bytes_tamaño_correcto:list[list[int]] = [[int(bit) for bit in bits_desentrelazados[i:i+tamaño_byte]] for i in range(0, len(bits_desentrelazados), tamaño_byte)]
     
     palabras:list[list[list[int]]] = [bytes_tamaño_correcto[i:i+n] for i in range(0, len(bytes_tamaño_correcto), n)]
 
