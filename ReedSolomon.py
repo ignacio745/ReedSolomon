@@ -8,18 +8,6 @@ from math import lcm
 
 
 def generar_palabra_valida(tamaño_byte: int, n: int, k: int, campo: list[list[int]], bytes_informacion_tamaño_correcto:list[list[int]]) -> list[list[int]]:
-    # bits:list[int] = []
-
-    # for byte in bytes_informacion:
-    #     bits.extend([int(bit) for bit in f"{int(byte):08b}"])
-    # print(bits)
-    
-
-    # bytes_informacion_tamaño_correcto = [bits[i:i+tamaño_byte] for i in range(0, len(bits), tamaño_byte)]
-    # bytes_informacion_tamaño_correcto = bytes_informacion_tamaño_correcto[0:5]
-
-    
-
     g_x = crear_polinomio_generador_palabras_validas(n, k, campo)
     polinomio_informacion = [(n-1-i, obtener_alfa_entero_desde_espacio(byte, campo)) for (i, byte) in enumerate(bytes_informacion_tamaño_correcto) if byte != campo[0]]
 
@@ -36,7 +24,7 @@ def bytes_completos_a_archivo(lista_palabras_validas:list[list[list[int]]], n:in
     for palabras_valida in lista_palabras_validas:
         for byte_completo in palabras_valida:
             cadena_bytes += "".join([str(bit) for bit in byte_completo])
-    # bytes_completos = [int(cadena_bytes[i:i+8], 2) for i in range(0, len(cadena_bytes), 8)]
+
     
     bits_entrelazados:str = ""
     bits_por_palabra = tamaño_byte * n
@@ -97,8 +85,6 @@ def generar_lista_palabras_validas(tamaño_bytes: int, n:int, k:int, campo:list[
 
 
 if __name__ == "__main__":
-
-    # campo = generar_campo([1,0,1,1], 8)
     
     n = 15
     k = 9

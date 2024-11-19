@@ -1,16 +1,5 @@
 import generar_campo_galois
 
-# tabla = [
-#     [0,0,0],
-#     [0,0,1],
-#     [0,1,0],
-#     [1,0,0],
-#     [0,1,1],
-#     [1,1,0],
-#     [1,1,1],
-#     [1,0,1]
-# ]
-
 
 def obtener_alfa_desde_entero(alfa:int, tabla: list[list[int]]):
     if alfa == -1:

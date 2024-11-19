@@ -34,23 +34,6 @@ if __name__ == "__main__":
     bits_corrompidos += bits[errores_soportables:]
 
 
-    
-    # errores_soportables = (n-k)//2
-
-    # lista_bits = [int(bit) for bit in bits]
-    
-
-    # for i in range(0, len(lista_bits), n*tamaño_byte):
-    #     palabra = lista_bits[i:i+n*tamaño_byte]
-    #     posiciones_errores = crear_lista_posiciones_errores(n, errores_soportables)
-
-    #     for posicion in posiciones_errores:
-    #         palabra[posicion*tamaño_byte:posicion*tamaño_byte+tamaño_byte] = [random.randint(0, 1) for _ in range(tamaño_byte)]
-        
-    #     lista_bits[i:i+n*tamaño_byte] = palabra
-
-    # bits_corrompidos = "".join([str(bit) for bit in lista_bits])
-
     bytes_corrompidos = bytes([int(bits_corrompidos[i:i+8], 2) for i in range(0, len(bits_corrompidos), 8)])
 
     archivo = open("informacion_corrompida.txt", "wb")

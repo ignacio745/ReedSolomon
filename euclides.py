@@ -53,18 +53,14 @@ def euclides(pol_1:list[tuple[int, int]], pol_2:list[tuple[int, int]], n:int , k
     actual, q = dividir_polinomios(campo, penult, ult)
     t_actual = q
     t_anterior = ([(0,0)])
-    # print("{:10} {:10} {:10}".format("actual", "q", "t_actual"))
-    # print(f"{actual}  {q}  {t_actual}")
     while len(actual) > 0 and actual[0][0] > ((n-k)//2)-1:
         penult = ult.copy()
         ult = actual.copy()
         actual, q = dividir_polinomios(campo, penult, ult)
         t_por_q = multiplicar_polinomios(t_actual, q, campo)
-        # print(t_por_q)
         aux = sumar_polinomios(t_anterior, t_por_q, campo)
         t_anterior = t_actual
         t_actual = aux
-        # print(f"{actual}  {q}  {t_actual}")
     
     normalizador = obtener_normalizador(t_actual, campo)
     t_normalizado = multiplicar_polinomios(t_actual, normalizador, campo)
@@ -74,9 +70,6 @@ def euclides(pol_1:list[tuple[int, int]], pol_2:list[tuple[int, int]], n:int , k
 
 
 if __name__ == "__main__":
-    # campo = generar_campo([1,0,1,1], 8)
-    # print(eliminar_repetidos([(3,1), (3,4), (2,2), (2,6)], campo))
-    # print(euclides([(2,0)], [(1,2), (0,6)], 9, 5, campo))
     campo = generar_campo([1,0,0,1,1], 16)
     print(euclides([(4,0)], [(3,11), (2, 11), (1, 4), (0, 12)], 15, 11, campo))
     campo = generar_campo([1,0,1,1], 8)
